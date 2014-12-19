@@ -2,10 +2,11 @@
 ## To reduce processing time two functions are provided so that
 ## the calculation of the inverse of the input data matrix is only performed if the calculation has
 ## not previously been performed.
-## makeCacheMatrix - initialises an object, stores the input data matrix and defines functions get (read) and set (write)
-## cacheSolve - takes the object defined by makeCacheMatrix.  If the inverse matrix in the object is empty, the inverse calculation
+## the function makeCacheMatrix - initialises an object, stores the input data matrix and defines functions get (read) and set (write)
+## the function cacheSolve - takes the object defined by makeCacheMatrix.  If the inverse matrix in the object is empty, the inverse calculation
 ## has not been performed.  The calculation proceeds and output is stored in the global object.
 ##  If the inverse matrix in the object contains values, this information is retrieved skipping the calculation step.
+##  By just retrieving the calculation time is reduced
 
 makeCacheMatrix <- function(x = matrix()) {
       ## input data to the function will be global variable x, a matrix
@@ -36,7 +37,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## this function is provided with an object input produced by function makeCacheMatrix.
-## the object defines the function of get and set and defines the input data matrix
+## the object locally within the function cacheSolve is called x and it defines the function of get and set and the input data matrix
 ## if the inverse of the input data matrix has previously been calculated and stored in the object, the information is retrieved
 ## if the inverse of the input data matrix has not been calculated, the function calculates and stores the matrix inverse
 cacheSolve <- function(x, ...) {
